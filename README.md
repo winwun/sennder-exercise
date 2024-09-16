@@ -1,6 +1,4 @@
-# je-new-service
-
-[![Build status](https://badge.buildkite.com/replace-me?branch=master)](https://buildkite.com/seek/je-new-service)
+# sennder-service
 
 This is a template repository that has the following features integrated by
 default:
@@ -46,9 +44,3 @@ yarn prettier:fix
    - README.md
    - package.json
    - serverless.yml
-
-2. Do a `yarn ci` and you can now start development
-3. To be able to use Buildkite, remember to create a PR to add in your new repo
-   in <https://github.com/SEEK-Jobs/build-agency-strategies>
-4. Additional configuration step for new services:
-   <https://jobseeker.atlassian.net/wiki/spaces/EMPLOYERDEV/pages/1174372407/Setting+up+a+new+github+repo>
