@@ -1,0 +1,7 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "importOrder": ["^[a-zA-Z](.*)", "^@(.*)", "^[./]"],
+  "importOrderSortSpecifiers": true,
+  "importOrderParserPlugins": ["decorators-legacy", "typescript", "jsx"]
+}

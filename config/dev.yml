@@ -1,0 +1,20 @@
+corsAllowedOrigins:
+  - &joraAllowedOrigin https://dev-employer.jora.com
+  - &jobsDbAllowedOrigin https://dev-employer-sg.jobsdb.com
+  - &jobstreetVnAllowedOrigin https://dev-employer.jobstreet.vn
+  - &jobstreetExpressAllowedOrigin https://dev-employer.jobstreetexpress.com
+
+jora_AllowedOrigin: *joraAllowedOrigin
+jora_ApiHost: api-dev.employer.jora.com
+
+jobsdb_AllowedOrigin: *jobsDbAllowedOrigin
+jobsdb_ApiHost: api-dev.employer.jobsdb.com
+
+jobstreetVn_AllowedOrigin: *jobstreetVnAllowedOrigin
+jobstreetVn_ApiHost: api-dev.employer.jobstreet.vn
+
+jobstreetExpress_AllowedOrigin: *jobstreetExpressAllowedOrigin
+jobstreetExpress_ApiHost: api-dev.employer.jobstreetexpress.com
+
+assetTagging:
+  isProduction: 'false'

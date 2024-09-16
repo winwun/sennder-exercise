@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es2017"
+    ],
+    "strictNullChecks": true,
+    "removeComments": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "target": "es2017",
+    "outDir": "lib",
+    "baseUrl": ".",
+    "types": [
+      "node",
+      "jest"
+    ],
+    "paths": {
+      "@lib/*": [
+        "src/lib/*"
+      ],
+      "@dtype/*": [
+        "src/types/*"
+      ]
+    },
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.js"
+  ],
+  "exclude": [
+    "node_modules/**/*",
+    ".serverless/**/*",
+    ".webpack/**/*",
+    "_warmup/**/*",
+    ".vscode/**/*",
+    "./load-source-maps.ts"
+  ]
+}

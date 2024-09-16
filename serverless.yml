@@ -1,0 +1,65 @@
+service: je-new-service
+
+plugins:
+  - serverless-plugin-datadog
+  - serverless-webpack
+  - serverless-prune-plugin
+  - serverless-iam-roles-per-function
+provider:
+  name: aws
+  runtime: nodejs18.x
+  memorySize: 1024
+  stage: ${opt:stage, 'dev'}
+  region: ap-southeast-2
+  apiGateway:
+    restApiId:
+      'Fn::ImportValue': ${self:custom.sharedApiGateway}-restApiId
+    restApiRootResourceId:
+      'Fn::ImportValue': ${self:custom.sharedApiGateway}-rootResourceId
+
+  environment:
+    STAGE: ${self:provider.stage}
+
+  deploymentBucket:
+    tags:
+      seek:data:types:internal: system-artefacts
+      seek:data:consumers: internal
+      seek:env:production: ${self:custom.configFile.assetTagging.isProduction}
+
+custom:
+  datadogEnabled:
+      dev: true
+      prod: true
+  datadog:
+      enabled: ${self:custom.datadogEnabled.${self:provider.stage}}
+      apiKey: '{{resolve:secretsmanager:jora/apex/datadog-api-key}}'
+      site: datadoghq.com
+      enableSourceCodeIntegration: false
+      addLayers: true
+
+  sharedApiGateway: je-api-gateway-${self:provider.stage}
+  configFile: ${file(./config/${self:provider.stage}.yml)}
+  webpack:
+    webpackConfig: ./webpack.config.js
+    packager: 'yarn'
+    includeModules: true
+  jwtRequiredAuthoriser:
+    name: ${self:service}-jwtRequired
+    arn:
+      'Fn::ImportValue': ${self:custom.sharedApiGateway}-jwtRequired
+    resultTtlInSeconds: 0
+    identitySource: method.request.header.Cookie
+    type: request
+  corsSetting:
+    origins: ${self:custom.configFile.corsAllowedOrigins}
+    headers:
+      - Content-Type
+      - Accept
+    allowCredentials: true
+  prune:
+    automatic: true
+    number: 5
+
+functions:
+  sampleHandler:
+    handler: src/handlers/sample-handler/sample-handler.handler
