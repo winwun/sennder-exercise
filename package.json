@@ -4,7 +4,7 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "start": "sls offline start -s dev -r ap-southeast-2",
+    "start": "sls invoke local -f sampleHandler",
     "ci": "yarn install --frozen-lockfile",
     "deploy:serverless": "sls deploy",
     "package:serverless": "sls package",

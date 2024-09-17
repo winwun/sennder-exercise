@@ -1,4 +1,4 @@
-service: je-new-service
+service: sennder-service
 
 plugins:
   - serverless-plugin-datadog
